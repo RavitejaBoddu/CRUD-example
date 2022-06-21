@@ -16,6 +16,7 @@ const AddUser = () => {
         data.gender = gender;
 
         console.log(data);
+        e.target.reset();
     }
   return (
     <div className="main-container">
