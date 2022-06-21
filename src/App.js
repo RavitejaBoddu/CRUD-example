@@ -1,9 +1,12 @@
 import './App.css';
+import AddUser from './components/AddUser/AddUser';
+import UserList from './components/UserList/UserList';
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello Welcome to the app.</h2>
+      <AddUser />
+      <UserList />
     </div>
   );
 }

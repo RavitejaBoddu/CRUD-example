@@ -2,37 +2,130 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  /* background: black; */
+  color: rgb(0, 0, 0);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.main-container {
+  display: flex;
+  flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.right-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
 }
 
-.App-link {
-  color: #61dafb;
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 16px;
+  background: rgb(233, 233, 233);
+  color: rgb(0, 0, 0);
+}
+
+.input {
+  height: 30px;
+  width: 250px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.button {
+  font-family: 'Gumela';
+  background: #000000;
+  color: white;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100px;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #000000;
+  background: white;
+  border: 1px solid rgb(61, 58, 58);
 }
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
+  }
+}
+
+.float {
+  animation-name: ani-float;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes ani-float {
+  0% {
+    transform: translate(0, 0px);
+  }
+
+  50% {
+    transform: translate(0, 15px);
+  }
+
+  100% {
+    transform: translate(0, -0px);
+  }
+}
+
+.slide-left {
+  -webkit-animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(150px);
+    transform: translateX(150px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(150px);
+    transform: translateX(150px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
   }
 }
