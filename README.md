@@ -1,3 +1,15 @@
+CRUD API Usage
+
+#i. https://crudcrud.com/
+
+1.	Create Get example  
+2.	Create post example  
+3.	Create Put example  
+4.	Create Delete example  
+5.	You can convert your CRUD  
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
