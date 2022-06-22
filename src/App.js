@@ -1,12 +1,19 @@
 import './App.css';
-import AddUser from './components/AddUser/AddUser';
-import UserList from './components/UserList/UserList';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Home from './components/HomePage/Home';
+import UpdateUser from './components/UpdateUser/UpdateUser';
+
 
 function App() {
+
   return (
     <div className="App">
-      <AddUser />
-      <UserList />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/update/:id" component={UpdateUser} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

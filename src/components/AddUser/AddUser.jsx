@@ -1,23 +1,30 @@
 import React, { useState } from "react";
 
 const AddUser = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [age, setAge] = useState("");
-    const [gender, setGender] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        var data = new Object();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new Object();
 
-        data.name = name;
-        data.email = email;
-        data.age = age;
-        data.gender = gender;
+    data.name = name;
+    data.email = email;
+    data.age = age;
+    data.gender = gender;
 
-        console.log(data);
-        e.target.reset();
-    }
+    fetch("https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users", {
+  headers: { "Content-Type": "application/json; charset=utf-8" },
+  method: 'POST',
+  body: JSON.stringify(data)
+})
+.then(response => response.json())
+    e.target.reset();
+  };
+
+
   return (
     <div className="main-container">
       <h1 className="slide-left">Fill the below details to add the user:</h1>
@@ -25,7 +32,7 @@ const AddUser = () => {
         <form name="myform" onSubmit={handleSubmit}>
           <label htmlFor="name">Full name:</label>
           <input
-              onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             type="text"
             name="fullname"
             id="uname"
@@ -33,7 +40,7 @@ const AddUser = () => {
           />
           <label htmlFor="email">Email:</label>
           <input
-              onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             name="email"
             id="email"
@@ -41,7 +48,7 @@ const AddUser = () => {
           />
           <label htmlFor="age">Age:</label>
           <input
-              onChange={(e) => setAge(e.target.value)}
+            onChange={(e) => setAge(e.target.value)}
             type="number"
             name="age"
             id="pass"
