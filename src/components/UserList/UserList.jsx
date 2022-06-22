@@ -23,7 +23,7 @@ const UserList = () => {
 
     xhr.open(
       "GET",
-      "https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users"
+      "https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users"
     );
 
     xhr.send();
@@ -48,7 +48,7 @@ const UserList = () => {
 
     xhr.open(
       "GET",
-      "https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users"
+      "https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users"
     );
 
     xhr.send();
@@ -56,13 +56,13 @@ const UserList = () => {
 
   return (
     <div className="user-list-container">
-      <button className="userlist-btn" onClick={getData}>
+      <div className="caption">
+          <h2>User's data from API:</h2>
+          <button className="refresh-button" onClick={getData}>
         Refresh List
       </button>
+        </div>
       <table>
-        <caption>
-          <h2>User's data</h2>
-        </caption>
         <thead>
           <tr>
             <th scope="col">Name</th>

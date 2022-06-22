@@ -15,19 +15,17 @@ const AddUser = () => {
     data.age = age;
     data.gender = gender;
 
-    fetch("https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users", {
-  headers: { "Content-Type": "application/json; charset=utf-8" },
-  method: 'POST',
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
+    fetch("https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users", {
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      method: "POST",
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
     e.target.reset();
   };
 
-
   return (
     <div className="main-container">
-      <h1 className="slide-left">Fill the below details to add the user:</h1>
+      <h2 className="slide-left">Fill the below details to add the user:</h2>
       <div className="form-container">
         <form name="myform" onSubmit={handleSubmit}>
           <label htmlFor="name">Full name:</label>

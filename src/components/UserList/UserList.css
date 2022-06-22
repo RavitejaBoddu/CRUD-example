@@ -12,21 +12,24 @@ table,
 th,
 td {
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 th {
-  background: black;
-  color: white;
+  background: rgb(255, 178, 178);
+  color: rgb(0, 0, 0);
   padding: 1rem;
 }
 td {
   padding: 1rem;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
-.userlist-btn {
-  margin-right: 5px;
-  padding: 3px;
-  border: 1px solid black;
-  background: rgb(182, 238, 255);
-  border-radius: 8px;
+
+.caption{
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
 }
+
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const UserEntry = (props) => {
   const { name, email, age, gender, id } = props;
-  const url = `https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users/${id}`;
+  const url = `https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users/${id}`;
 
   const deleteUser = () => {
     try {
@@ -24,9 +24,9 @@ const UserEntry = (props) => {
       <td>{gender}</td>
       <td>
         <Link to={`/update/${id}`}>
-          <button className="userlist-btn">Update</button>
+          <button className="button">Update</button>
         </Link>
-        <button className="userlist-btn" onClick={deleteUser}>
+        <button className="button" onClick={deleteUser}>
           Delete
         </button>
       </td>

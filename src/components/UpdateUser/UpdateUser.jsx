@@ -1,90 +1,87 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import './UpdateUser.css'
 
 const UpdateUser = () => {
   const { id } = useParams();
   
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({
+      name : "",
+      email: "",
+      age: 0,
+      gender: ""
+  });
 
-  const url = `https://crudcrud.com/api/3bf73c644c014a82b3ca62b105859f5f/users/${id}`;
-
+  const url = `https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users/${id}`;
 
   useEffect(() => {
     async function getUser() {
       try {
         const user = await axios.get(url);
-          setUserData(user.data);
+        setUserData(user.data);
         console.log(user.data);
       } catch (error) {
-        console.log("Something is Wrong");
+        console.log(error.message);
       }
     }
     getUser();
   }, [id]);
 
-  const [u_name, setName] = useState(userData.name);
-  const [u_email, setEmail] = useState(userData.email);
-  const [u_age, setAge] = useState(userData.age);
-  const [u_gender, setGender] = useState("");
-  console.log(u_name)
-  console.log(u_email)
-  console.log(u_age)
-  console.log(u_gender)
+  function onTextFieldChange(e) {
+    setUserData({
+     ...userData,
+     [e.target.name]: e.target.value
+    })
+   }
 
-  const handleUpdate = (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    const data = new Object();
-
-    data.name = u_name;
-    data.email = u_email;
-    data.age = u_age;
-    data.gender = u_gender;
-
-    fetch(url, {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      method: "PUT",
-      body: JSON.stringify(data),
-    }).then((response) => response.json());
-    e.target.reset();
+    fetch(
+      url, {
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        method: 'PUT',
+        body: JSON.stringify(userData)
+      })
+      .then(response => console.log(response))
   };
-
  
   return (
     <div className="main-container">
       <h1 className="slide-left">Fill the below details to update the user</h1>
+      <div className="form-container">
       <form name="myform" onSubmit={handleUpdate}>
         <label htmlFor="name">Full name:</label>
         <input
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => onTextFieldChange(e)}
           type="text"
           name="fullname"
           id="uname"
           className="input"
-          value={u_name}
+          value={userData.name}
         />
         <label htmlFor="email">Email:</label>
         <input
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => onTextFieldChange(e)}
           type="email"
           name="email"
           id="email"
           className="input"
-          value={u_email}
+          value={userData.email}
         />
         <label htmlFor="age">Age:</label>
         <input
-          onChange={(e) => setAge(e.target.value)}
+          onChange={(e) => onTextFieldChange(e)}
           type="number"
           name="age"
           id="pass"
           className="input"
-          value={u_age}
+          value={userData.age}
         />
         <div className="radio">
           <span>Gender:- </span>
           <input
-            onChange={(e) => setGender(e.target.value)}
+             onChange={(e) => onTextFieldChange(e)}
             type="radio"
             id="male"
             name="gender"
@@ -92,7 +89,7 @@ const UpdateUser = () => {
           />
           <label htmlFor="male">Male</label>
           <input
-            onChange={(e) => setGender(e.target.value)}
+             onChange={(e) => onTextFieldChange(e)}
             type="radio"
             id="female"
             name="gender"
@@ -104,7 +101,8 @@ const UpdateUser = () => {
           <input type="submit" className="button" value="Add User" />
         </div>
       </form>
-      <button >Back to Home</button>
+      </div>
+      <Link to="/"><button className="refresh-button">Back to Home</button></Link>
     </div>
   );
 };
