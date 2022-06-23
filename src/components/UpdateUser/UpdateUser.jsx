@@ -13,7 +13,8 @@ const UpdateUser = () => {
       gender: ""
   });
 
-  const url = `https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users/${id}`;
+  const url = `https://crudcrud.com/api/49c1fd7298974abb9a86111a39fae397/users/${id}`;
+  // console.log(url)
 
   useEffect(() => {
     async function getUser() {
@@ -37,15 +38,34 @@ const UpdateUser = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    fetch(
-      url, {
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        method: 'PUT',
-        body: JSON.stringify(userData)
-      })
-      .then(response => console.log(response))
-  };
- 
+  //   const requestOptions = {
+  //     method: 'PUT',
+  //     headers: { 'Content-Type': 'application/json',
+  //     // 'Access-Control-Allow-Origin': '* '
+  //   },
+  //     body: JSON.stringify(userData)
+  // };
+  //   fetch(url, requestOptions)
+  //     .then(response => response.json())
+  //     .then(data => console.log(data));
+    // fetch(
+    //   url, {
+    //     headers: { "Content-Type": "application/json; charset=utf-8"
+    //   },
+    //     method: 'PUT',
+    //     body: (userData)
+    //   })
+    //   .then(response => console.log(response))
+    try {
+      await axios.put(
+        url,
+        userData
+      );
+      } catch (error) {
+      console.log("Something is Wrong");
+    }
+  }
+  
   return (
     <div className="main-container">
       <h1 className="slide-left">Fill the below details to update the user</h1>
@@ -98,7 +118,7 @@ const UpdateUser = () => {
           <label htmlFor="female">Female</label>
         </div>
         <div className="button-container">
-          <input type="submit" className="button" value="Add User" />
+          <input type="submit" className="button" value="Update User" />
         </div>
       </form>
       </div>

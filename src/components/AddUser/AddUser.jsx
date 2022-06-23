@@ -15,7 +15,7 @@ const AddUser = () => {
     data.age = age;
     data.gender = gender;
 
-    fetch("https://crudcrud.com/api/8efe99290e1940b4aed596c01f9dbc3f/users", {
+    fetch("https://crudcrud.com/api/49c1fd7298974abb9a86111a39fae397/users", {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: "POST",
       body: JSON.stringify(data),

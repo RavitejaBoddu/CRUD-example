@@ -16,13 +16,13 @@ td {
 }
 
 th {
-  background: rgb(255, 178, 178);
+  background: rgb(147, 194, 255);
   color: rgb(0, 0, 0);
   padding: 1rem;
 }
 td {
   padding: 1rem;
-  background: rgb(255, 255, 255);
+  background: rgb(248, 248, 248);
   color: rgb(0, 0, 0);
 }
 
