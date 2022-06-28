@@ -1,4 +1,3 @@
-import { click } from "@testing-library/user-event/dist/click";
 import React, { useState } from "react";
 
 const AddUser = () => {
@@ -22,7 +21,6 @@ const AddUser = () => {
       body: JSON.stringify(data),
     }).then((response) => response.json());
     e.target.reset();
-    // document.getElementById('#refresh-btn').addEventListener(click);
     window.location.reload();
   };
 

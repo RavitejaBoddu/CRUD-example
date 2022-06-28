@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import UserEntry from "../UserEntry/UserEntry";
 import "./UserList.css";
 const UserList = () => {
+  const [userData, setUserData] = useState([]);
 
-  const [userData, setUserData] = useState([])
-
-  useEffect(()=> {
+  useEffect(() => {
     let xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
@@ -30,7 +29,7 @@ const UserList = () => {
   }, []);
 
   const getData = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     let xhr = new XMLHttpRequest();
 
     xhr.onload = function () {
@@ -52,16 +51,16 @@ const UserList = () => {
     );
 
     xhr.send();
-  }
+  };
 
   return (
     <div className="user-list-container">
       <div className="caption">
-          <h2>User's data from API:</h2>
-          <button id="refresh-btn" className="refresh-button" onClick={getData}>
-        Refresh List
-      </button>
-        </div>
+        <h2>User's data from API:</h2>
+        <button id="refresh-btn" className="refresh-button" onClick={getData}>
+          Refresh List
+        </button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -75,14 +74,15 @@ const UserList = () => {
         <tbody>
           {userData.map((user) => {
             return (
-              <UserEntry key={user._id}
-                name ={user.name}
-                email = {user.email}
-                age = {user.age}
-                gender = {user.gender}
-                id = {user._id}
+              <UserEntry
+                key={user._id}
+                name={user.name}
+                email={user.email}
+                age={user.age}
+                gender={user.gender}
+                id={user._id}
               />
-            )
+            );
           })}
         </tbody>
       </table>

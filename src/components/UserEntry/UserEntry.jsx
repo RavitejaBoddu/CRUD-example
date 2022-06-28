@@ -28,7 +28,6 @@ const UserEntry = (props) => {
     } catch (error) {
       alert(error.message);
     }
-    window.location.reload();
   };
 
   return (
