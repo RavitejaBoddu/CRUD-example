@@ -23,7 +23,7 @@ const UserList = () => {
 
     xhr.open(
       "GET",
-      "https://crudcrud.com/api/49c1fd7298974abb9a86111a39fae397/users"
+      "https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users"
     );
 
     xhr.send();
@@ -48,7 +48,7 @@ const UserList = () => {
 
     xhr.open(
       "GET",
-      "https://crudcrud.com/api/49c1fd7298974abb9a86111a39fae397/users"
+      "https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users"
     );
 
     xhr.send();
@@ -58,7 +58,7 @@ const UserList = () => {
     <div className="user-list-container">
       <div className="caption">
           <h2>User's data from API:</h2>
-          <button className="refresh-button" onClick={getData}>
+          <button id="refresh-btn" className="refresh-button" onClick={getData}>
         Refresh List
       </button>
         </div>

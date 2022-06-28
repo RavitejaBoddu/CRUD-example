@@ -1,3 +1,4 @@
+import { click } from "@testing-library/user-event/dist/click";
 import React, { useState } from "react";
 
 const AddUser = () => {
@@ -15,12 +16,14 @@ const AddUser = () => {
     data.age = age;
     data.gender = gender;
 
-    fetch("https://crudcrud.com/api/49c1fd7298974abb9a86111a39fae397/users", {
+    fetch("https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users", {
       headers: { "Content-Type": "application/json; charset=utf-8" },
       method: "POST",
       body: JSON.stringify(data),
     }).then((response) => response.json());
     e.target.reset();
+    // document.getElementById('#refresh-btn').addEventListener(click);
+    window.location.reload();
   };
 
   return (
