@@ -4,7 +4,7 @@ import "./UserEntry.css";
 
 const UserEntry = (props) => {
   const { name, email, age, gender, id } = props;
-  const url = `https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users/${id}`;
+  const url = `https://crudcrud.com/api/d7f373c779274c14975eec737e9517ab/users/${id}`;
 
   const [modal, setModal] = useState(false);
 
@@ -18,22 +18,20 @@ const UserEntry = (props) => {
     document.body.classList.remove("active-modal");
   }
 
-  const deleteUser = () => {
+  const deleteUser =  () => {
     try {
-      fetch(url, {
+       fetch(url, {
         method: "DELETE",
       });
       setModal(!modal);
-      
     } catch (error) {
       alert(error.message);
     }
-    window.location.reload();
   };
 
   return (
     <>
-      <tr key={id}>
+      <tr key={id} className="tbody_row">
         <td>{name}</td>
         <td>{email}</td>
         <td>{age}</td>
@@ -42,7 +40,7 @@ const UserEntry = (props) => {
           <Link to={`/update/${id}`}>
             <button className="button">Update</button>
           </Link>
-          <button className="button" onClick={toggleModal}>
+          <button className="button delete-btn" onClick={toggleModal}>
             Delete
           </button>
         </td>
@@ -52,7 +50,7 @@ const UserEntry = (props) => {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <h2 className="confirm">Confirm to delete user</h2>
-            <button className="button" onClick={deleteUser}>
+            <button className="button confirm-btn" onClick={deleteUser}>
               Confirm
             </button>
             <button className="close-modal button" onClick={toggleModal}>

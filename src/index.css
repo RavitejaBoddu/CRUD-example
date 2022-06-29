@@ -2,10 +2,12 @@
   font-family: Gumela;
   src: url('../src/fonts/Gumela Regular.otf');
 }
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Gumela';
+  /* font-family: 'Gumela'; */
+  font-family: 'Quicksand', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

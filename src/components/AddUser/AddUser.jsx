@@ -1,4 +1,3 @@
-import { click } from "@testing-library/user-event/dist/click";
 import React, { useState } from "react";
 
 const AddUser = () => {
@@ -7,23 +6,45 @@ const AddUser = () => {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new Object();
+    var atposition = email.indexOf("@");
+    var dotposition = email.lastIndexOf(".");
+    try {
+      if (name == null || name === "") {
+        alert("please enter your name");
+      } else if (email == null || email === "") {
+        alert("Please enter your email");
+      } else if (age == null || age === "") {
+        alert("please enter the age");
+      } else if (
+        atposition < 1 ||
+        dotposition < atposition + 2 ||
+        dotposition + 2 >= email.length
+      ) {
+        alert("Please enter a valid email address");
+      } else {
+        data.name = name;
+        data.email = email;
+        data.age = age;
+        data.gender = gender;
 
-    data.name = name;
-    data.email = email;
-    data.age = age;
-    data.gender = gender;
+        await fetch(
+          "https://crudcrud.com/api/d7f373c779274c14975eec737e9517ab/users",
+          {
+            headers: { "Content-Type": "application/json; charset=utf-8" },
+            method: "POST",
+            body: JSON.stringify(data),
+          }
+        ).then((response) => response.json());
 
-    fetch("https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users", {
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      method: "POST",
-      body: JSON.stringify(data),
-    }).then((response) => response.json());
-    e.target.reset();
-    // document.getElementById('#refresh-btn').addEventListener(click);
-    window.location.reload();
+        e.target.reset();
+        window.location.reload();
+      }
+    } catch (e) {
+      alert(e.message);
+    }
   };
 
   return (
@@ -42,7 +63,7 @@ const AddUser = () => {
           <label htmlFor="email">Email:</label>
           <input
             onChange={(e) => setEmail(e.target.value)}
-            type="email"
+            type="text"
             name="email"
             id="email"
             className="input"
@@ -52,7 +73,7 @@ const AddUser = () => {
             onChange={(e) => setAge(e.target.value)}
             type="number"
             name="age"
-            id="pass"
+            id="age"
             className="input"
           />
           <div className="radio">
@@ -75,7 +96,12 @@ const AddUser = () => {
             <label htmlFor="female">Female</label>
           </div>
           <div className="button-container">
-            <input type="submit" className="button" value="Add User" />
+            <input
+              type="submit"
+              className="button"
+              id="add-btn"
+              value="Add User"
+            />
           </div>
         </form>
       </div>

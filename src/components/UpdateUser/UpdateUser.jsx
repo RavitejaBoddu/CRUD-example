@@ -1,20 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import './UpdateUser.css'
+import "./UpdateUser.css";
 
 const UpdateUser = () => {
   const { id } = useParams();
-  
+
   const [userData, setUserData] = useState({
-      name : "",
-      email: "",
-      age: 0,
-      gender: ""
+    name: "",
+    email: "",
+    age: 0,
+    gender: "",
   });
 
-  const url = `https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users/${id}`;
-  // console.log(url)
+  const url = `https://crudcrud.com/api/d7f373c779274c14975eec737e9517ab/users/${id}`;
 
   useEffect(() => {
     async function getUser() {
@@ -31,98 +30,79 @@ const UpdateUser = () => {
 
   function onTextFieldChange(e) {
     setUserData({
-     ...userData,
-     [e.target.name]: e.target.value
-    })
-   }
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-  //   const requestOptions = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json',
-  //     // 'Access-Control-Allow-Origin': '* '
-  //   },
-  //     body: JSON.stringify(userData)
-  // };
-  //   fetch(url, requestOptions)
-  //     .then(response => response.json())
-  //     .then(data => console.log(data));
-    // fetch(
-    //   url, {
-    //     headers: { "Content-Type": "application/json; charset=utf-8"
-    //   },
-    //     method: 'PUT',
-    //     body: (userData)
-    //   })
-    //   .then(response => console.log(response))
     try {
-      await axios.put(
-        url,
-        userData
-      );
-      } catch (error) {
+      await axios.put(url, userData);
+    } catch (error) {
       console.log("Something is Wrong");
     }
-  }
-  
+  };
+
   return (
     <div className="main-container">
       <h1 className="slide-left">Fill the below details to update the user</h1>
       <div className="form-container">
-      <form name="myform" onSubmit={handleUpdate}>
-        <label htmlFor="name">Full name:</label>
-        <input
-          onChange={(e) => onTextFieldChange(e)}
-          type="text"
-          name="fullname"
-          id="uname"
-          className="input"
-          value={userData.name}
-        />
-        <label htmlFor="email">Email:</label>
-        <input
-          onChange={(e) => onTextFieldChange(e)}
-          type="email"
-          name="email"
-          id="email"
-          className="input"
-          value={userData.email}
-        />
-        <label htmlFor="age">Age:</label>
-        <input
-          onChange={(e) => onTextFieldChange(e)}
-          type="number"
-          name="age"
-          id="pass"
-          className="input"
-          value={userData.age}
-        />
-        <div className="radio">
-          <span>Gender:- </span>
+        <form name="myform" onSubmit={handleUpdate}>
+          <label htmlFor="name">Full name:</label>
           <input
-             onChange={(e) => onTextFieldChange(e)}
-            type="radio"
-            id="male"
-            name="gender"
-            value="Male"
+            onChange={(e) => onTextFieldChange(e)}
+            type="text"
+            name="fullname"
+            id="uname"
+            className="input"
+            value={userData.name}
           />
-          <label htmlFor="male">Male</label>
+          <label htmlFor="email">Email:</label>
           <input
-             onChange={(e) => onTextFieldChange(e)}
-            type="radio"
-            id="female"
-            name="gender"
-            value="Female"
+            onChange={(e) => onTextFieldChange(e)}
+            type="email"
+            name="email"
+            id="email"
+            className="input"
+            value={userData.email}
           />
-          <label htmlFor="female">Female</label>
-        </div>
-        <div className="button-container">
-          <input type="submit" className="button" value="Update User" />
-        </div>
-      </form>
+          <label htmlFor="age">Age:</label>
+          <input
+            onChange={(e) => onTextFieldChange(e)}
+            type="number"
+            name="age"
+            id="pass"
+            className="input"
+            value={userData.age}
+          />
+          <div className="radio">
+            <span>Gender:- </span>
+            <input
+              onChange={(e) => onTextFieldChange(e)}
+              type="radio"
+              id="male"
+              name="gender"
+              value="Male"
+            />
+            <label htmlFor="male">Male</label>
+            <input
+              onChange={(e) => onTextFieldChange(e)}
+              type="radio"
+              id="female"
+              name="gender"
+              value="Female"
+            />
+            <label htmlFor="female">Female</label>
+          </div>
+          <div className="button-container">
+            <input type="submit" className="button" value="Update User" />
+          </div>
+        </form>
       </div>
-      <Link to="/"><button className="refresh-button">Back to Home</button></Link>
+      <Link to="/">
+        <button className="refresh-button">Back to Home</button>
+      </Link>
     </div>
   );
 };
