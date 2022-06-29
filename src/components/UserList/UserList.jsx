@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UserEntry from "../UserEntry/UserEntry";
 import "./UserList.css";
+import axios from "axios";
 const UserList = () => {
   const [userData, setUserData] = useState([]);
 
@@ -22,35 +23,21 @@ const UserList = () => {
 
     xhr.open(
       "GET",
-      "https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users"
+      "https://crudcrud.com/api/d7f373c779274c14975eec737e9517ab/users"
     );
 
     xhr.send();
   }, []);
 
-  const getData = (e) => {
+  const getData =  (e) => {
     e.preventDefault();
-    let xhr = new XMLHttpRequest();
+     axios
 
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        let data = JSON.parse(xhr.responseText);
-        setUserData(data);
-      } else if (xhr.status === 404) {
-        console.log("No records found");
-      }
-    };
+      .get(`https://crudcrud.com/api/d7f373c779274c14975eec737e9517ab/users`)
 
-    xhr.onerror = function () {
-      console.log("Network error occurred");
-    };
-
-    xhr.open(
-      "GET",
-      "https://crudcrud.com/api/29c4c9ffb24140bcbbea7ba0bbce987b/users"
-    );
-
-    xhr.send();
+      .then((res) => {
+        setUserData(res.data);
+      });
   };
 
   return (
@@ -62,7 +49,7 @@ const UserList = () => {
         </button>
       </div>
       <table>
-        <thead>
+        <thead id="table_head">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Email</th>
@@ -71,7 +58,7 @@ const UserList = () => {
             <th scope="col">Update/Delete</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="table_body">
           {userData.map((user) => {
             return (
               <UserEntry
